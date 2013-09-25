@@ -11,12 +11,15 @@ Glossary
         selection of bundles, a sensible directory structure, a default
         configuration, and an optional configuration system.
 
-   项目
-        A *Project* is a directory composed of an Application, a set of
+   Project
+        A *project* is a directory composed of an Application, a set of
         bundles, vendor libraries, an autoloader, and web front controller
         scripts.
+   项目 
+        一个*项目*。。。。。
 
    Application
+   
         An *Application* is a directory containing the *configuration* for a
         given set of Bundles.
 
