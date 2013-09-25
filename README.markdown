@@ -2,7 +2,7 @@ Symfony Documentation
 =====================
 
 This documentation is rendered online at http://symfony.com/doc/current/
-
+这个文档在线渲染，地址为http://symfony.com/doc/current/。
 Contributing
 ------------
 
