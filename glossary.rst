@@ -11,7 +11,7 @@ Glossary
         selection of bundles, a sensible directory structure, a default
         configuration, and an optional configuration system.
 
-   Project
+   项目
         A *Project* is a directory composed of an Application, a set of
         bundles, vendor libraries, an autoloader, and web front controller
         scripts.
