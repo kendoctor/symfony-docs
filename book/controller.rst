@@ -40,35 +40,25 @@
 请求，控制器，响应生命周期
 ----------------------------------------
 
-Every request handled by a Symfony2 project goes through the same simple lifecycle.
-The framework takes care of the repetitive tasks and ultimately executes a
-controller, which houses your custom application code: Symfony2项目处理的每个请求都经历同样简单地生命周期。这个框架负责重复的任务，最终执行一个控制器，里面有你的自定义应用程序代码：
+Symfony2项目处理的每个请求都经历同样简单地生命周期。这个框架负责重复的任务，最终执行
+一个控制器，里面有你的自定义应用程序代码：
 
-#. Each request is handled by a single front controller file (e.g. ``app.php``
-   or ``app_dev.php``) that bootstraps the application; #. 每个请求都是由一个单独的前端控制器文件引导应用程序处理（如``app.php``或``app_dev.php``）；
+#. 每个请求都是由一个单独的前端控制器文件引导应用程序处理（如``app.php``或``app_dev.php``）；
 
-#. The ``Router`` reads information from the request (e.g. the URI), finds
-   a route that matches that information, and reads the ``_controller`` parameter
-   from the route; #. ``Router``从请求中读取信息（例如，URL），找到与信息相配的路由，从路由中路读取``_controller``参数；
+#. ``Router``从请求中读取信息（例如，URL），找到与信息相配的路由，从路由中路读取``_controller``参数；
 
-#. The controller from the matched route is executed and the code inside the
-   controller creates and returns a ``Response`` object; #. 匹配路由的控制器被执行，控制器中的代码创建并返回一个``Response``对象；
+#. 匹配路由的控制器被执行，控制器中的代码创建并返回一个``Response``对象；
 
-#. The HTTP headers and content of the ``Response`` object are sent back to
-   the client. #. HTTP头部和``Response``对象的内容被送回客户端。
+#. HTTP头部和``Response``对象的内容被送回客户端。
 
-Creating a page is as easy as creating a controller (#3) and making a route that
-maps a URL to that controller (#2).创建一个页面就跟创建一个控制器(#3)，制造一个将URL映射到控制器(#2)的路由一样容易。
+创建一个页面就跟创建一个控制器(#3)，制造一个将URL映射到控制器(#2)的路由一样容易。
 
 .. note::
 
-    Though similarly named, a "front controller" is different from the
-    "controllers" talked about in this chapter. A front controller
-    is a short PHP file that lives in your web directory and through which
-    all requests are directed. A typical application will have a production
-    front controller (e.g. ``app.php``) and a development front controller
-    (e.g. ``app_dev.php``). You'll likely never need to edit, view or worry
-    about the front controllers in your application.尽管名字相似，“前端控制器”与本章节谈到的“控制器”是不同的。一个前端控制器是你网页目录下的一个短的PHP文件，所有的请求都通过它定向。一个典型的应用程序会有一个生产前端控制器（如``app.php``）和一个开发前端控制器（如``app_dev.php``）。你可能永远都不需要去编辑，查看或是担心你应用程序中的前端控制器。
+    尽管名字相似，“前端控制器”与本章节谈到的“控制器”是不同的。一个前端控制器是你网页目录下的
+    一个短的PHP文件，所有的请求都通过它定向。一个典型的应用程序会有一个生产前端控制器
+    （如``app.php``）和一个开发前端控制器（如``app_dev.php``）。你可能永远都不需要
+    去编辑，查看或是担心你应用程序中的前端控制器。
 
 .. index::
    single: Controller; Simple example
@@ -76,9 +66,8 @@ maps a URL to that controller (#2).创建一个页面就跟创建一个控制器
 一个简单的控制器
 -------------------
 
-While a controller can be any PHP callable (a function, method on an object,
-or a ``Closure``), in Symfony2, a controller is usually a single method inside
-a controller object. Controllers are also called *actions*.虽然一个控制器可以是任何PHP调用（一个函数，用于对象的方法，或一个``Closure``），在Symfony2中，控制器通常是一个控制器对象中的建议方法。控制器也被成为*动作*。
+虽然一个控制器可以是任何PHP调用（一个函数，用于对象的方法，或一个``Closure``），
+在Symfony2中，控制器通常是一个控制器对象中的建议方法。控制器也被成为*动作*。
 
 .. code-block:: php
     :linenos:
@@ -98,31 +87,21 @@ a controller object. Controllers are also called *actions*.虽然一个控制器
 
 .. tip::
 
-    Note that the *controller* is the ``indexAction`` method, which lives
-    inside a *controller class* (``HelloController``). Don't be confused
-    by the naming: a *controller class* is simply a convenient way to group
-    several controllers/actions together. Typically, the controller class
-    will house several controllers/actions (e.g. ``updateAction``, ``deleteAction``,
-    etc).注意，*控制器*是``indexAction``方法，存在于一个*控制器类* (``HelloController``)中。不要被名字迷惑：一个*控制器类*只是一个将几个控制器/动作分组的方便的方法。通常情况下，控制器类将容纳几个控制器/动作(如``updateAction``, ``deleteAction``等)。
+    注意，*控制器*是``indexAction``方法，存在于一个*控制器类* (``HelloController``) 中。
+    不要被名字迷惑：一个*控制器类*只是一个将几个控制器/动作分组的方便的方法。
+    通常情况下，控制器类将容纳几个控制器/动作(如``updateAction``, ``deleteAction``等)。
 
-This controller is pretty straightforward:控制器非常简单：
+控制器非常简单：
 
-* *line 4*: Symfony2 takes advantage of PHP 5.3 namespace functionality to
-  namespace the entire controller class. The ``use`` keyword imports the
-  ``Response`` class, which the controller must return.* *第4行*：Symfony2利用PHP5.3的命名空间功能来命名空间整个控制器类。控制器必须返回的``Response``类由关键词``use``导入。
+* *第4行*：Symfony2利用PHP5.3的命名空间功能来命名空间整个控制器类。控制器必须返回的
+   ``Response``类由关键词``use``导入。
 
-* *line 6*: The class name is the concatenation of a name for the controller
-  class (i.e. ``Hello``) and the word ``Controller``. This is a convention
-  that provides consistency to controllers and allows them to be referenced
-  only by the first part of the name (i.e. ``Hello``) in the routing configuration.* *第6行*：类名是控制器类名字即（``Hello``）与``Controller``的串联。这是一个惯例，给控制器提供了持续性，允许他们在路由配置中被引用名称的第一部份（即``Hello``）。
-
-* *line 8*: Each action in a controller class is suffixed with ``Action``
-  and is referenced in the routing configuration by the action's name (``index``).
-  In the next section, you'll create a route that maps a URI to this action.
-  You'll learn how the route's placeholders (``{name}``) become arguments
-  to the action method (``$name``).* *第8行*：控制器类中的每个动作后缀为``Action``，并在路由配置中被动作的名字(``index``)引用。在下一节中，你将创建一个映射URL到这个动作中的路由。你会学习路由的占位符如何变成动作方法(``$name``)的参数的。
-
-* *line 10*: The controller creates and returns a ``Response`` object.* *第10行*：控制器创建并返回一个``Response``对象。
+* *第6行*：类名是控制器类名字即（``Hello``）与``Controller``的串联。这是一个惯例，
+   给控制器提供了持续性，允许他们在路由配置中被引用名称的第一部份（即``Hello``）。
+* *第8行*：控制器类中的每个动作后缀为``Action``，并在路由配置中被动作的名字(``index``)
+   引用。在下一节中，你将创建一个映射URL到这个动作中的路由。你会学习路由的占位符如何
+   变成动作方法(``$name``)的参数的。
+* *第10行*：控制器创建并返回一个``Response``对象。
 
 .. index::
    single: Controller; Routes and controllers
@@ -130,9 +109,8 @@ This controller is pretty straightforward:控制器非常简单：
 将一个URL映射到控制器
 -----------------------------
 
-The new controller returns a simple HTML page. To actually view this page
-in your browser, you need to create a route, which maps a specific URL path
-to the controller:新的控制器返回一个简单的HTML页面。要真正在你的浏览器中查看这个页面，你需要创建一个路由，将一个特定的URL路径映射到控制器：
+新的控制器返回一个简单的HTML页面。要真正在你的浏览器中查看这个页面，你需要创建
+一个路由，将一个特定的URL路径映射到控制器：
 
 .. configuration-block::
 
@@ -157,18 +135,14 @@ to the controller:新的控制器返回一个简单的HTML页面。要真正在�
             '_controller' => 'AcmeHelloBundle:Hello:index',
         )));
 
-Going to ``/hello/ryan`` now executes the ``HelloController::indexAction()``
-controller and passes in ``ryan`` for the ``$name`` variable. Creating a
-"page" means simply creating a controller method and associated route.访问``/hello/ryan`` 现在执行``HelloController::indexAction()``控制器，并为 ``$name``变量进入``ryan``。创建一个“页面”只意味着创建一个控制器和相关连的路由。
+访问``/hello/ryan`` 现在执行``HelloController::indexAction()``控制器，
+并为 ``$name``变量进入``ryan``。创建一个“页面”只意味着创建一个控制器和相关连的路由。
 
-Notice the syntax used to refer to the controller: ``AcmeHelloBundle:Hello:index``.
-Symfony2 uses a flexible string notation to refer to different controllers.
-This is the most common syntax and tells Symfony2 to look for a controller
-class called ``HelloController`` inside a bundle named ``AcmeHelloBundle``. The
-method ``indexAction()`` is then executed.请注意用来指代控制器的句法：``AcmeHelloBundle:Hello:index``。Symfony2使用灵活的字符串来表示不同的控制器。这是最常见的句法，让Symfony2在``AcmeHelloBundle``包中寻找名叫``HelloController``的控制器类。然后``indexAction()``方法被执行。
+请注意用来指代控制器的句法：``AcmeHelloBundle:Hello:index``。Symfony2使用灵活的
+字符串来表示不同的控制器。这是最常见的句法，让Symfony2在``AcmeHelloBundle``包中
+寻找名叫``HelloController``的控制器类。然后``indexAction()``方法被执行。
 
-For more details on the string format used to reference different controllers,
-see :ref:`controller-string-syntax`.关于用于引用不同控制器的字符串的详细信息，请参阅:ref:`controller-string-syntax`。
+关于用于引用不同控制器的字符串的详细信息，请参阅:ref:`controller-string-syntax`。
 
 .. note::
 
