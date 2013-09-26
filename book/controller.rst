@@ -11,7 +11,10 @@ HTTP request and constructs and returns an HTTP response (as a Symfony2
 a serialized JSON array, an image, a redirect, a 404 error or anything else
 you can dream up. The controller contains whatever arbitrary logic *your
 application* needs to render the content of a page.
-控制器是你创建的一个PHP函数值，从HTTP请求和构造中获取信息并返回一个HTTP响应（作为一个Symfony2 的“响应”对象）。
+控制器是你创建的一个PHP函数值，从HTTP请求和构造中获取信息并返回一个HTTP响应
+（作为一个Symfony2 的“响应”对象）。这个响应可能是一个HTML页面，一个XML文档，一个
+序列化的JSON数组，一个图像，一个重定向，一个404错误页面或其他任何你可以想象到的。
+控制器包含了*你的应用程序*需要的任意逻辑来渲染页面内容。
 
 See how simple this is by looking at a Symfony2 controller in action.
 The following controller would render a page that simply prints ``Hello world!``::
