@@ -476,7 +476,7 @@ content from the template can be used to create a ``Response`` object   尽管�
     return new Response($content);
 
 This can even be done in just one step with the ``render()`` method, which
-returns a ``Response`` object containing the content from the template   ::
+returns a ``Response`` object containing the content from the template   甚至只用一步就可以完成，就用``render()``方法返回一个包含着模板内容的``Response``对象::
 
     return $this->render(
         'AcmeHelloBundle:Hello:index.html.twig',
@@ -484,21 +484,21 @@ returns a ``Response`` object containing the content from the template   ::
     );
 
 In both cases, the ``Resources/views/Hello/index.html.twig`` template inside
-the ``AcmeHelloBundle`` will be rendered.
+the ``AcmeHelloBundle`` will be rendered.这两种情况下，``AcmeHelloBundle``中的``Resources/views/Hello/index.html.twig``模板将被渲染。
 
 The Symfony templating engine is explained in great detail in the
-:doc:`Templating </book/templating>` chapter.
+:doc:`Templating </book/templating>` chapter.Symfony模板引擎在:doc:`Templating </book/templating>`章节中有详细解释。
 
 .. tip::
 
     You can even avoid calling the ``render`` method by using the ``@Template``
     annotation. See the :doc:`FrameworkExtraBundle documentation</bundles/SensioFrameworkExtraBundle/annotations/view>`
-    more details.
+    more details.使用``@Template``注释，你甚至可以避免调用``render``方法。更多细节请参阅:doc:`FrameworkExtraBundle documentation</bundles/SensioFrameworkExtraBundle/annotations/view>`
 
 .. tip::
 
     The ``renderView`` method is a shortcut to direct use of the ``templating``
-    service. The ``templating`` service can also be used directly::
+    service. The ``templating`` service can also be used directly    ``renderView``方法是直接使用``templating``服务的快捷方式。也可以直接使用``templating``服务::
 
         $templating = $this->get('templating');
         $content = $templating->render(
@@ -510,7 +510,7 @@ The Symfony templating engine is explained in great detail in the
 
     It is possible to render templates in deeper subdirectories as well, however
     be careful to avoid the pitfall of making your directory structure unduly
-    elaborate::
+    elaborate   在更小的子目录中渲染模板也是有可能的，但是小心避免陷阱，使你的目录结构过分地阐述。::
 
         $templating->render(
             'AcmeHelloBundle:Hello/Greetings:index.html.twig',
@@ -521,11 +521,11 @@ The Symfony templating engine is explained in great detail in the
 .. index::
    single: Controller; Accessing services
 
-Accessing other Services
+Accessing other Services访问其他服务
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 When extending the base controller class, you can access any Symfony2 service
-via the ``get()`` method. Here are several common services you might need::
+via the ``get()`` method. Here are several common services you might need   当你扩展控制器基类时，你可以通过``get()``方法访问任何Symfony2服务。这里有几个你可能需要的常见的服务::
 
     $request = $this->getRequest();
 
@@ -537,7 +537,7 @@ via the ``get()`` method. Here are several common services you might need::
 
 There are countless other services available and you are encouraged to define
 your own. To list all available services, use the ``container:debug`` console
-command:
+command  有数不清的别的服务可以使用，你要鼓起勇气定义你自己的服务。要列出所有可以使用的服务，就用``container:debug``控制台命令:
 
 .. code-block:: bash
 
@@ -549,12 +549,12 @@ For more information, see the :doc:`/book/service_container` chapter.
    single: Controller; Managing errors
    single: Controller; 404 pages
 
-Managing Errors and 404 Pages
+Managing Errors and 404 Pages管理错误和404页面
 -----------------------------
 
 When things are not found, you should play well with the HTTP protocol and
 return a 404 response. To do this, you'll throw a special type of exception.
-If you're extending the base controller class, do the following::
+If you're extending the base controller class, do the following   当你找不到东西时，你应该好好使用HTTP歇息，并返回一个404响应。要做到这个，你将抛出一个特殊类型的异常。如果你正在扩展控制器基类，做以下的操作::
 
     public function indexAction()
     {
@@ -568,10 +568,10 @@ If you're extending the base controller class, do the following::
     }
 
 The ``createNotFoundException()`` method creates a special ``NotFoundHttpException``
-object, which ultimately triggers a 404 HTTP response inside Symfony.
+object, which ultimately triggers a 404 HTTP response inside Symfony.``createNotFoundException()`` 方法创建一个特殊的``NotFoundHttpException``对象，最终在Symfony中导致一个404HTTP响应。
 
 Of course, you're free to throw any ``Exception`` class in your controller -
-Symfony2 will automatically return a 500 HTTP response code.
+Symfony2 will automatically return a 500 HTTP response code.当然，你可以在你的控制器中随意抛出任何``Exception``类 - Symfony2将自动返回一个500HTTP响应代码。
 
 .. code-block:: php
 
@@ -580,22 +580,22 @@ Symfony2 will automatically return a 500 HTTP response code.
 In every case, a styled error page is shown to the end user and a full debug
 error page is shown to the developer (when viewing the page in debug mode).
 Both of these error pages can be customized. For details, read the
-":doc:`/cookbook/controller/error_pages`" cookbook recipe.
+":doc:`/cookbook/controller/error_pages`" cookbook recipe.在每种情况下，风格错误页面是给最终用户显示的，一个完整的调试错误页面是给开发商显示的（在调试模式下查看页面时）。这两种错误页面都可以被自定义。有关详细信息，参阅“:doc:`/cookbook/controller/error_pages`”cookbook诀窍。
 
 .. index::
    single: Controller; The session
    single: Session
 
-Managing the Session
+Managing the Session管理会话
 --------------------
 
 Symfony2 provides a nice session object that you can use to store information
 about the user (be it a real person using a browser, a bot, or a web service)
 between requests. By default, Symfony2 stores the attributes in a cookie
-by using the native PHP sessions.
+by using the native PHP sessions.Symfony2提供了一个很好的会话对象，你可以在请求中用它来储存用户信息（假使一个真实的人使用浏览器，机器人或web服务）。默认情况下，Symfony2通过使用本地PHP会话将其属性存储在cookie中。
 
 Storing and retrieving information from the session can be easily achieved
-from any controller::
+from any controller   从会话中存储和检索信息可以从任何控制器中轻松实现::
 
     $session = $this->getRequest()->getSession();
 
@@ -609,20 +609,20 @@ from any controller::
     $filters = $session->get('filters', array());
 
 These attributes will remain on the user for the remainder of that user's
-session.
+session.这些属性将保留在那个用户会话的其余用户上。
 
 .. index::
    single: Session; Flash messages
 
-Flash Messages
+Flash Messages闪存消息
 ~~~~~~~~~~~~~~
 
 You can also store small messages that will be stored on the user's session
 for exactly one additional request. This is useful when processing a form:
 you want to redirect and have a special message shown on the *next* request.
-These types of messages are called "flash" messages.
+These types of messages are called "flash" messages.你还可以为一个额外的请求存储将被存储在用户会话上的小消息。处理一个表单时，这很有帮助：你想要重新定向，并有一个特殊的消息显示在*下一个*请求上。这些类型的消息称为“闪存”消息。
 
-For example, imagine you're processing a form submit::
+For example, imagine you're processing a form submit  例如，想象一下你正在处理一个表单提交::
 
     public function updateAction()
     {
@@ -643,10 +643,10 @@ For example, imagine you're processing a form submit::
 
 After processing the request, the controller sets a ``notice`` flash message
 and then redirects. The name (``notice``) isn't significant - it's just what
-you're using to identify the type of the message.
+you're using to identify the type of the message.处理请求后，控制器设置一个``notice``闪存消息，然后重新定向。这个名称（``notice``）没有意义 - 它只是被你用来辨别消息类型的。
 
 In the template of the next action, the following code could be used to render
-the ``notice`` message:
+the ``notice`` message:在模板的下一个动作中，以下代码可能被用来渲染``notice``消息：
 
 .. configuration-block::
 
@@ -668,18 +668,18 @@ the ``notice`` message:
 
 By design, flash messages are meant to live for exactly one request (they're
 "gone in a flash"). They're designed to be used across redirects exactly as
-you've done in this example.
+you've done in this example.根据设计，闪存消息注定要准确地指定一个请求（他们“瞬间消失”）。正如你在这个例子中所做的，他们被设计用于交互重定向。
 
 .. index::
    single: Controller; Response object
 
-The Response Object
+The Response Object响应对象
 -------------------
 
 The only requirement for a controller is to return a ``Response`` object. The
 :class:`Symfony\\Component\\HttpFoundation\\Response` class is a PHP
 abstraction around the HTTP response - the text-based message filled with HTTP
-headers and content that's sent back to the client::
+headers and content that's sent back to the client   控制器唯一的要求就是返回一个``Response``对象。:class:`Symfony\\Component\\HttpFoundation\\Response`类是一个HTTP响应周围的PHP抽象 - 基于文本的消息充满了HTTP头部和被送回给客户端的内容::
 
     use Symfony\Component\HttpFoundation\Response;
 
@@ -696,25 +696,25 @@ headers and content that's sent back to the client::
     :class:`Symfony\\Component\\HttpFoundation\\HeaderBag` object with several
     useful methods for reading and mutating the ``Response`` headers. The
     header names are normalized so that using ``Content-Type`` is equivalent
-    to ``content-type`` or even ``content_type``.
+    to ``content-type`` or even ``content_type``.``headers``属性是一个:class:`Symfony\\Component\\HttpFoundation\\HeaderBag`对象，带有几个对于阅读和变异``Response``头有用的方法。头部名称被规范化，以便使用``Content-Type``相当于`content-type``，甚至`content_type``。
 
 .. tip::
 
-    There are also special classes to make certain kinds of responses easier:
+    There are also special classes to make certain kinds of responses easier:也有特殊类，使某些类型的响应更容易：
 
-    - For JSON, there is :class:`Symfony\\Component\\HttpFoundation\\JsonResponse`.
+    - For JSON, there is :class:`Symfony\\Component\\HttpFoundation\\JsonResponse`.对于JSON，有:class:`Symfony\\Component\\HttpFoundation\\JsonResponse`。请参阅:ref:`component-http-foundation-json-response`。
       See :ref:`component-http-foundation-json-response`.
-    - For files, there is :class:`Symfony\\Component\\HttpFoundation\\BinaryFileResponse`.
+    - For files, there is :class:`Symfony\\Component\\HttpFoundation\\BinaryFileResponse`.对于文件，有:class:`Symfony\\Component\\HttpFoundation\\BinaryFileResponse`。请参阅:ref:`component-http-foundation-serving-files`。
       See :ref:`component-http-foundation-serving-files`.
 
 .. index::
    single: Controller; Request object
 
-The Request Object
+The Request Object请求对象
 ------------------
 
 Besides the values of the routing placeholders, the controller also has access
-to the ``Request`` object when extending the base ``Controller`` class::
+to the ``Request`` object when extending the base ``Controller`` class   扩展``Controller``基类时，除了路由占位符的值，控制器还可以访问``Request``对象::
 
     $request = $this->getRequest();
 
@@ -727,26 +727,26 @@ to the ``Request`` object when extending the base ``Controller`` class::
     $request->request->get('page'); // get a $_POST parameter
 
 Like the ``Response`` object, the request headers are stored in a ``HeaderBag``
-object and are easily accessible.
+object and are easily accessible.跟``Response``对象一样，请求头存储在一个`HeaderBag``对象中，很方便使用。
 
-Final Thoughts
+结语
 --------------
 
 Whenever you create a page, you'll ultimately need to write some code that
 contains the logic for that page. In Symfony, this is called a controller,
 and it's a PHP function that can do anything it needs in order to return
-the final ``Response`` object that will be returned to the user.
+the final ``Response`` object that will be returned to the user.每当你创建一个页面，你最终会需要编写一些包含逻辑的代码。在Symfony中，这被叫做控制器，它是一个PHP函数，能够做一切它需要做的事，来返回最终将被返回给用户的``Response``对象。
 
 To make life easier, you can choose to extend a base ``Controller`` class,
 which contains shortcut methods for many common controller tasks. For example,
 since you don't want to put HTML code in your controller, you can use
-the ``render()`` method to render and return the content from a template.
+the ``render()`` method to render and return the content from a template.为了使生活更轻松，你可以选择扩展一个``Controller``基类，它包含许多常见控制器任务的快捷方式。例如，既然你不想把HTML代码放在你的控制器中，你可以使用``render()``方法来渲染并从一个模板返回内容。
 
 In other chapters, you'll see how the controller can be used to persist and
 fetch objects from a database, process form submissions, handle caching and
-more.
+more.在其它章节中，你会看到，控制器是如何被用来从数据库中坚持并获取对象，进行表单提交，处理缓存等等。
 
-Learn more from the Cookbook
+Learn more from the Cookbook从Cookbook中了解更多
 ----------------------------
 
 * :doc:`/cookbook/controller/error_pages`
