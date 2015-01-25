@@ -2,7 +2,10 @@
    single: Installation
 
 Installing and Configuring Symfony
+安装与配置 Symfony
 ==================================
+
+这章节的目标是让你起步并运行建立在Symfony上的应用程序。幸运的是，Symfony提供“分布”， 它是具有功能性的Symfony起步项目，你可以立刻下载它和开始开发。
 
 The goal of this chapter is to get you up and running with a working application
 built on top of Symfony. Fortunately, Symfony offers "distributions", which
@@ -11,19 +14,29 @@ developing in immediately.
 
 .. tip::
 
+    如果你在寻找指导，关于如何更好的创建一个新项目并且通过版本控制保存它，查看 `使用版本控制 `_
+
     If you're looking for instructions on how best to create a new project
     and store it via source control, see `Using Source Control`_.
 
 .. _installing-a-symfony2-distribution:
 
 Installing a Symfony Distribution
+安装Symfony分布
 ---------------------------------
 
 .. tip::
 
+    首先， 检查你是否安装和配置了PHP Web服务器（譬如Apache）。更多关于Symfony需求信息，
+    查看:doc:`requirements reference </reference/requirements>`。
+
     First, check that you have installed and configured a Web server (such
     as Apache) with PHP. For more information on Symfony requirements, see the
     :doc:`requirements reference </reference/requirements>`.
+
+Symfony打包“分布”，它是一个全功能的应用程序，包含Symfony核心库，一套有用的Bundles，一个
+合理的目录结构和一些默认配置。当你下载一份Symfony分布时，你在下载一个功能性应用程序骨架，它
+可以立刻使用于开发你的应用程序。
 
 Symfony packages "distributions", which are fully-functional applications
 that include the Symfony core libraries, a selection of useful bundles, a
@@ -31,15 +44,23 @@ sensible directory structure and some default configuration. When you download
 a Symfony distribution, you're downloading a functional application skeleton
 that can be used immediately to begin developing your application.
 
+
+通过开始访问Symfony `http://symfony.com/download`_ 下载页面。
+在此页，你可以看到 *Symfony标准版本*，这是一个主Symfony分布。 这里有两种方法开始你的项目：
 Start by visiting the Symfony download page at `http://symfony.com/download`_.
 On this page, you'll see the *Symfony Standard Edition*, which is the main
 Symfony distribution. There are 2 ways to get your project started:
 
 Option 1) Composer
+选择 1） Composer
 ~~~~~~~~~~~~~~~~~~
+
+`Composer`_ 是为PHP打造的关联管理库，你可以用它来现在Symfony标准版本。
 
 `Composer`_ is a dependency management library for PHP, which you can use
 to download the Symfony Standard Edition.
+
+开始 `下载 Composer`_ 到你本机。如果你已经安装了Curl，那么就如此简单：
 
 Start by `downloading Composer`_ anywhere onto your local computer. If you
 have curl installed, it's as easy as:
@@ -50,9 +71,14 @@ have curl installed, it's as easy as:
 
 .. note::
 
+    如果你的计算机无法使用Composer，那么你查看一些推荐，当运行这个命令的时候。 
+    按照推荐安装 Composer 至正常可用。
+
     If your computer is not ready to use Composer, you'll see some recommendations
     when running this command. Follow those recommendations to get Composer
     working properly.
+
+Composer是一个PHAR执行文件， 你使用它可以下载标准分布。
 
 Composer is an executable PHAR file, which you can use to download the Standard
 Distribution:
@@ -63,6 +89,8 @@ Distribution:
 
 .. tip::
 
+    为了能够更快的下载第三方文件， 可以在Composer命令后添加 ``--prefer-dist`` 选项。
+     
     To download the vendor files faster, add the ``--prefer-dist`` option at
     the end of any Composer command.
 
