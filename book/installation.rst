@@ -2,6 +2,8 @@
    single: Installation
 
 Installing and Configuring Symfony
+==================================
+
 安装与配置 Symfony
 ==================================
 
@@ -22,6 +24,8 @@ developing in immediately.
 .. _installing-a-symfony2-distribution:
 
 Installing a Symfony Distribution
+---------------------------------
+
 安装Symfony分布
 ---------------------------------
 
@@ -52,6 +56,8 @@ On this page, you'll see the *Symfony Standard Edition*, which is the main
 Symfony distribution. There are 2 ways to get your project started:
 
 Option 1) Composer
+~~~~~~~~~~~~~~~~~~
+
 选择 1） Composer
 ~~~~~~~~~~~~~~~~~~
 
@@ -90,7 +96,7 @@ Distribution:
 .. tip::
 
     为了能够更快的下载第三方文件， 可以在Composer命令后添加 ``--prefer-dist`` 选项。
-     
+
     To download the vendor files faster, add the ``--prefer-dist`` option at
     the end of any Composer command.
 
