@@ -102,9 +102,16 @@ Distribution:
 
 .. tip::
 
+    添加 ``-vvv`` 选项 查看 Composer运行过程的日志信息 － 这个非常有帮助，对于延迟严重的网络，
+    看起来没有什么发生。
+
     Add the ``-vvv`` flag to see everything that Composer is doing - this is
     especially useful on a slow connection where it may seem that nothing is
     happening.
+
+
+这个Composer会下载标准分布其所有相关的第三方类库，命令可能需要花上几分钟。
+当它完成之后， 你应该可以得到如下的一个目录结构：
 
 This command may take several minutes to run as Composer downloads the Standard
 Distribution along with all of the vendor libraries that it needs. When it finishes,
@@ -112,7 +119,9 @@ you should have a directory that looks something like this:
 
 .. code-block:: text
 
+    path/to/webroot/ <- 你的Web服务器目录夹（ 通常是 htdocs 或者是 public)
     path/to/webroot/ <- your web server directory (sometimes named htdocs or public)
+        Symfony/ <- 新项目目录夹
         Symfony/ <- the new directory
             app/
                 cache/
@@ -129,15 +138,27 @@ you should have a directory that looks something like this:
 Option 2) Download an Archive
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+选择 2) 现在一个文档包
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+你也可以下载一个标准版本的文档包。这里，你可以有两个选择：
+
 You can also download an archive of the Standard Edition. Here, you'll
 need to make two choices:
+
+* 下载 ``.tgz`` 或者 ``.zip`` 文档包 - 两者都一样，下载你觉得合适的：
 
 * Download either a ``.tgz`` or ``.zip`` archive - both are equivalent, download
   whatever you're more comfortable using;
 
+* 下载没有第三方类库的分布。如果你打算之后使用 Composer 来更新安装第三方类库。
+
 * Download the distribution with or without vendors. If you're planning on
   using more third-party libraries or bundles and managing them via Composer,
   you should probably download "without vendors".
+
+下载一种文档包到你的Web服务器的 Web 根目录并且解压缩。 在UNIX控制台中，
+可以使用以下命令来解压（``###``替换成你实际下载文件名）
 
 Download one of the archives somewhere under your local web server's root
 directory and unpack it. From a UNIX command line, this can be done with
@@ -151,14 +172,21 @@ one of the following commands (replacing ``###`` with your actual filename):
     # for a .zip file
     $ unzip Symfony_Standard_Vendors_2.6.###.zip
 
+如果你已经下载了 “无第三方类库”的文档包，你需要阅读下面章节内容。
+
 If you've downloaded "without vendors", you'll definitely need to read the
 next section.
 
 .. note::
 
+    你可以很容易覆盖默认的目录夹结构。 查看 :doc:`/cookbook/configuration/override_dir_structure` 更多信息。
+
     You can easily override the default directory structure. See
     :doc:`/cookbook/configuration/override_dir_structure` for more
     information.
+
+所有公共文件和前端控制器，在Symfony应用处理来访请求存放在 ``Symfony/web/`` 目录中。 因此，
+假设你解压文档包至你的Web 服务器或者虚拟主机的文档根目录，你的应用访问URLs地址将开始于 `http://localhost/Symfony/web/``。
 
 All public files and the front controller that handles incoming requests in
 a Symfony application live in the ``Symfony/web/`` directory. So, assuming
