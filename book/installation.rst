@@ -1,11 +1,13 @@
 .. index::
    single: Installation
 
-Installing and Configuring Symfony
-==================================
 
 安装与配置 Symfony
 ==================================
+
+Installing and Configuring Symfony
+==================================
+
 
 这章节的目标是让你起步并运行建立在Symfony上的应用程序。幸运的是，Symfony提供“分布”， 它是具有功能性的Symfony起步项目，你可以立刻下载它和开始开发。
 
@@ -23,10 +25,11 @@ developing in immediately.
 
 .. _installing-a-symfony2-distribution:
 
-Installing a Symfony Distribution
----------------------------------
 
 安装Symfony分布
+---------------------------------
+
+Installing a Symfony Distribution
 ---------------------------------
 
 .. tip::
@@ -55,10 +58,11 @@ Start by visiting the Symfony download page at `http://symfony.com/download`_.
 On this page, you'll see the *Symfony Standard Edition*, which is the main
 Symfony distribution. There are 2 ways to get your project started:
 
-Option 1) Composer
-~~~~~~~~~~~~~~~~~~
 
 选择 1） Composer
+~~~~~~~~~~~~~~~~~~
+
+Option 1) Composer
 ~~~~~~~~~~~~~~~~~~
 
 `Composer`_ 是为PHP打造的关联管理库，你可以用它来现在Symfony标准版本。
@@ -135,11 +139,13 @@ you should have a directory that looks something like this:
                 app.php
                 ...
 
-Option 2) Download an Archive
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 选择 2) 现在一个文档包
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Option 2) Download an Archive
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 你也可以下载一个标准版本的文档包。这里，你可以有两个选择：
 
