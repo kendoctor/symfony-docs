@@ -1,10 +1,19 @@
 .. index::
    single: Symfony Fundamentals
+   single: Symfony 基础
 
 .. _symfony2-and-http-fundamentals:
 
+Symfony and HTTP 基础
+=============================
+
 Symfony and HTTP Fundamentals
 =============================
+
+祝贺！通过学习Symfony，你上路了朝着成为一个产能高，打磨过，流行的Web开发员（实际上，最后一部分你上你的路）。Symfony被创建为了回到简单： 为了开发工具它让你开发的更快，开发更健壮的应用，但不影响你自己的方式。
+Symfony建立在最棒的思想上从多种技术：工具和理念，你将学习，代表成千上万人的努力，经历了许多年。
+也就是说，你不仅仅只是在学习 “Symfony”， 你在学习Web核心基础，最棒的开发实战，如何使用许多非常优秀的
+PHP类库，在内或者独立于Symfony外。因此，准备好了没有。
 
 Congratulations! By learning about Symfony, you're well on your way towards
 being a more *productive*, *well-rounded* and *popular* web developer (actually,
@@ -17,12 +26,23 @@ you're not just learning "Symfony", you're learning the fundamentals of the
 web, development best practices and how to use many amazing new PHP libraries,
 inside or independently of Symfony. So, get ready.
 
+
+对的，Symofny是一种哲学，这张杰将解释Web开发的基本常规概念：HTTP。 不管你的背景和擅长的编程语言如何，
+这章节对于所有人都必读。
+
 True to the Symfony philosophy, this chapter begins by explaining the fundamental
 concept common to web development: HTTP. Regardless of your background or
 preferred programming language, this chapter is a **must-read** for everyone.
 
+
+HTTP很简单
+--------------
+
 HTTP is Simple
 --------------
+
+HTTP（超文本传输协议）是一种文本语言，允许两台机器进行互相交流。就这！举个例子，当查看最新的 `xkcd`_ 
+连环漫画，接下来的对话时如此的：
 
 HTTP (Hypertext Transfer Protocol to the geeks) is a text language that allows
 two machines to communicate with each other. That's it! For example, when
@@ -32,10 +52,17 @@ takes place:
 .. image:: /images/http-xkcd.png
    :align: center
 
+
+当然，实际的语言会更加正式一点，但依然简单到死。
+HTTP这个术语用于描述此类简单的文本语言。不管你如何进行Web开发，你服务器的目标始终指导简单的文本请求，
+并返回简单的文本回应。
+
 And while the actual language used is a bit more formal, it's still dead-simple.
 HTTP is the term used to describe this simple text-based language. No matter
 how you develop on the web, the goal of your server is *always* to understand
 simple text requests, and return simple text responses.
+
+Symfony建立在这个事实之上。无论你知道与否，HTTP基本上你每天都在接触。通过Symfony，你将学习如何精通它。
 
 Symfony is built from the ground up around that reality. Whether you realize
 it or not, HTTP is something you use everyday. With Symfony, you'll learn
@@ -44,19 +71,32 @@ how to master it.
 .. index::
    single: HTTP; Request-response paradigm
 
+   single: HTTP; 请求－响应模式
+
+
+第一步: 客户端发送一个请求
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Step1: The Client Sends a Request
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+访问Web，每次对话以一个 *请求* 开始。 由客户端发起的一次HTTP特殊格式的文本消息请求
+（举例，一个浏览器，一个智能手机App等等）。客户端向服务器发送请求，并等待回应。
 
 Every conversation on the web starts with a *request*. The request is a text
 message created by a client (e.g. a browser, a smartphone app, etc) in a
 special format known as HTTP. The client sends that request to a server,
 and then waits for the response.
 
+看一下第一部分浏览器与 xkcd Web服务器之间的交互（请求）：
+
 Take a look at the first part of the interaction (the request) between a
 browser and the xkcd web server:
 
 .. image:: /images/http-xkcd-request.png
    :align: center
+
+用HTTP方式叙述， HTTP请求实际上看起来应该如此：
 
 In HTTP-speak, this HTTP request would actually look something like this:
 
@@ -67,15 +107,32 @@ In HTTP-speak, this HTTP request would actually look something like this:
     Accept: text/html
     User-Agent: Mozilla/5.0 (Macintosh)
 
+这个简单的消息交流必要的 *所有事情* 关于哪些资源客户端在请求。HTTP请求的第一行最重要，含有
+两部分内容： URI 和 HTTP请求方法。
+
 This simple message communicates *everything* necessary about exactly which
 resource the client is requesting. The first line of an HTTP request is the
 most important and contains two things: the URI and the HTTP method.
+
+URI（举例， ``/``, ``/contact`` 等等） 是唯一地址和识别客户端需要资源的地点。
+HTTP请求方法（举例，``GET``）定义你对所需要的资源*做*什么。 HTTP请求方法是请求的*动作*，
+定义少数常规的方法你如何操作资源。
 
 The URI (e.g. ``/``, ``/contact``, etc) is the unique address or location
 that identifies the resource the client wants. The HTTP method (e.g. ``GET``)
 defines what you want to *do* with the resource. The HTTP methods are the
 *verbs* of the request and define the few common ways that you can act upon
 the resource:
+
++----------+---------------------------------------+
+| *GET*    | 从服务器获取资源                         |
++----------+---------------------------------------+
+| *POST*   | 在服务器上创建资源                       |
++----------+---------------------------------------+
+| *PUT*    | 在服务器上更新资源                       |
++----------+---------------------------------------+
+| *DELETE* | 在服务器上删除资源                       |
++----------+---------------------------------------+
 
 +----------+---------------------------------------+
 | *GET*    | Retrieve the resource from the server |
@@ -87,6 +144,8 @@ the resource:
 | *DELETE* | Delete the resource from the server   |
 +----------+---------------------------------------+
 
+记住，想像一下HTTP请求将删除指定的一篇博文，举例：
+
 With this in mind, you can imagine what an HTTP request might look like to
 delete a specific blog entry, for example:
 
@@ -96,9 +155,16 @@ delete a specific blog entry, for example:
 
 .. note::
 
+    事实上，HTTP规范定义了9种HTTP请求方法，但大多数没有被广泛使用和支持。真实情况，
+    现在许多的浏览器都甚至不支持 ``PUT`` 和 ``DELETE`` 请求方法。
+
     There are actually nine HTTP methods defined by the HTTP specification,
     but many of them are not widely used or supported. In reality, many modern
     browsers don't even support the ``PUT`` and ``DELETE`` methods.
+
+对于HTTP第一行信息，除此之外，HTTP请求总是包含所谓请求头的其他几行信息。请求头提供许多信息，
+譬如，请求主机名 ``（Host）``，客户端可接受（``Accept``）的回应格式，请求客户端应用程序，
+用户代理(``User-Agent``)。许多其他头信息存在并可以在百科文章 `HTTP头信息字段列表`_  里找到 。
 
 In addition to the first line, an HTTP request invariably contains other
 lines of information called request headers. The headers can supply a wide
@@ -107,8 +173,14 @@ the client accepts (``Accept``) and the application the client is using to
 make the request (``User-Agent``). Many other headers exist and can be found
 on Wikipedia's `List of HTTP header fields`_ article.
 
+Step 2: 服务器返回一个响应
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Step 2: The Server Returns a Response
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+当服务器接受到请求，它知道客户端实际需要的资源（通过URI）和客户端需要对资源做什么（通过请求方法）。
+举例，在Get请求种，服务器准备好资源，并在HTTP响应种返回它。看一下从 xkcd Web服务器上的回应。
 
 Once a server has received the request, it knows exactly which resource the
 client needs (via the URI) and what the client wants to do with that resource
@@ -118,6 +190,8 @@ from the xkcd web server:
 
 .. image:: /images/http-xkcd.png
    :align: center
+
+翻译成HTTP，响应发送回浏览器，看起来将如此：
 
 Translated into HTTP, the response sent back to the browser will look something
 like this:
@@ -133,6 +207,12 @@ like this:
       <!-- ... HTML for the xkcd comic -->
     </html>
 
+HTTP回应包含了请求资源（这里是HTML内容），同样还有一些关于响应的其他信息。第一行尤其重要，
+包含HTTP响应的状态码（这里是200）。这个状态码联系请求回客户端的所有输出。这个请求成功与否？
+是否存在错误？不同的状态码暗示成功，错误，客户端需要做些其他事情（譬如，跳转至其他页面）。
+所有的状态码列表可以在百科文章 `HTTP状态码列表`_ 中找到。
+
+
 The HTTP response contains the requested resource (the HTML content in this
 case), as well as other information about the response. The first line is
 especially important and contains the HTTP response status code (200 in this
@@ -142,6 +222,11 @@ status codes exist that indicate success, an error, or that the client needs
 to do something (e.g. redirect to another page). A full list can be found
 on Wikipedia's `List of HTTP status codes`_ article.
 
+如同请求，HTTP响应通过HTTP头包含额外的一些信息。举例，一个重要的HTTP响应头是 ``Content-Type``。
+同一个资源的主体内容可以以多种格式，像HTML，XML或者JSON，返回，``Content-Type``头使用互联网媒体
+资源类型，如``text/html``，告诉客户端那种格式将被返回。常用的媒体资源类型列表可以在百科文章
+`常规的媒体资源类型`_ 中找到。
+
 Like the request, an HTTP response contains additional pieces of information
 known as HTTP headers. For example, one important HTTP response header is
 ``Content-Type``. The body of the same resource could be returned in multiple
@@ -150,24 +235,41 @@ Internet Media Types like ``text/html`` to tell the client which format is
 being returned. A list of common media types can be found on Wikipedia's
 `List of common media types`_ article.
 
+许多其他的头信息存在，有一些非常强大。举例，一些头信息可以用于创建强大的缓存系统。
+
 Many other headers exist, some of which are very powerful. For example, certain
 headers can be used to create a powerful caching system.
+
+请求,响应和Web开发
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Requests, Responses and Web Development
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+这种请求－响应的对话方式，是一种基本过程，驱动Web之间的所有通讯。终然如此重要和强大的过程，
+它也就是这么简单。
+
 This request-response conversation is the fundamental process that drives all
 communication on the web. And as important and powerful as this process is,
 it's inescapably simple.
+
+最重要的事实是：不管你使用的语言是什么，想要开发的应用程序的类型是什么（Web，移动，JSON API）
+或者，你崇尚的开发理念是什么，最终应用程序的目标**始终**是去了解每次请求，创建并返回正确的响应。
 
 The most important fact is this: regardless of the language you use, the
 type of application you build (web, mobile, JSON API) or the development
 philosophy you follow, the end goal of an application is **always** to understand
 each request and create and return the appropriate response.
 
+构建Symfony就是针对此事实。
+
 Symfony is architected to match this reality.
 
 .. tip::
+
+    为了学习更多HTTP规范，查阅原版的 `HTTP 1.1 RFC`_ 或者 为了细述原版规范内容的`HTTP Bis`_。
+    一个好使的在浏览时用于检查请求和响应头的FireFox扩展 `Live HTTP Headers`_ 工具。
+
 
     To learn more about the HTTP specification, read the original `HTTP 1.1 RFC`_
     or the `HTTP Bis`_, which is an active effort to clarify the original
@@ -175,10 +277,18 @@ Symfony is architected to match this reality.
     while browsing is the `Live HTTP Headers`_ extension for Firefox.
 
 .. index::
+   single: Symfony基础；请求和响应
+
+.. index::
    single: Symfony Fundamentals; Requests and responses
+
+PHP中的请求和响应
+-----------------------------
 
 Requests and Responses in PHP
 -----------------------------
+
+那么，当使用PHP时，你如何与 “请求” 交互并创建一个“响应”？实际上，PHP帮你抽象了整个过程::
 
 So how do you interact with the "request" and create a "response" when using
 PHP? In reality, PHP abstracts you a bit from the whole process::
@@ -189,6 +299,7 @@ PHP? In reality, PHP abstracts you a bit from the whole process::
     header('Content-Type: text/html');
     echo 'The URI requested is: '.$uri;
     echo 'The value of the "foo" parameter is: '.$foo;
+
 
 As strange as it sounds, this small application is in fact taking information
 from the HTTP request and using it to create an HTTP response. Instead of
